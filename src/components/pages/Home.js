@@ -7,15 +7,20 @@ import axios from "axios";
 function Home() {
   const [users, setuser] = useState([]);
 
+  const handelDelete = (index) => {};
+
+  const handelUpdate = (index) => {};
+
   useEffect(() => {
     loadUsers();
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:3000/db.json");
-    const data = await result.json();
-    setuser(data.users);
-    console.log(data.users);
+    const result = await axios.get("http://localhost:3001/users");
+    // const data = await result.json();
+    const data = await result.data;
+    setuser(data);
+    console.log(data);
   };
 
   return (
@@ -38,9 +43,22 @@ function Home() {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{user.name}</td>
+                  <td>{user.username}</td>
                   <td>{user.email}</td>
-                  <button>delete</button>
-                  <button>update</button>
+                  <td>
+                    <button
+                      className="btn btn-outline-danger mx-1"
+                      onClick={(index) => handelDelete(index)}
+                    >
+                      delete
+                    </button>
+                    <button
+                      className="btn btn-outline-primary mx-1"
+                      onClick={(index) => handelUpdate(index)}
+                    >
+                      update
+                    </button>
+                  </td>
                   <td></td>
                 </tr>
               );
