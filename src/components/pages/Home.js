@@ -31,7 +31,12 @@ function Home() {
           </thead>
           <tbody>
           {
-            console.log(users.map())
+           Object.keys(users).map((user,index) => {
+            return (
+            
+              console.log(typeof(users))
+            );
+          })
           }
           </tbody>
         </table>
